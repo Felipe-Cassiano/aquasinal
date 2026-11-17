@@ -19,7 +19,7 @@ export default function Button({
   return (
     <button
       type={type}
-      className={`rounded-lg transition disabled:cursor-not-allowed disabled:opacity-50 ${estilos[variante]} ${tamanhos[tamanho]} ${className}`}
+      className={`cursor-pointer rounded-lg transition disabled:cursor-not-allowed disabled:opacity-50 ${estilos[variante]} ${tamanhos[tamanho]} ${className}`}
       {...props}
     >
       {children}

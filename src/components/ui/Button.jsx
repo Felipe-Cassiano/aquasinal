@@ -1,5 +1,6 @@
 const estilos = {
-  primario: "bg-[var(--cor-destaque,#0f172a)] text-white hover:brightness-95",
+  primario:
+    "bg-[var(--cor-destaque,#0f172a)] text-[color:var(--cor-texto-destaque,#ffffff)] hover:brightness-95",
   contorno: "border border-slate-300 bg-white text-slate-600 hover:bg-slate-50",
 };
 

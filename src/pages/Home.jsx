@@ -9,8 +9,16 @@ import { ETAPA_INICIAL } from "../constants/stages";
 
 export default function Home() {
   const [etapaId, setEtapaId] = useState(ETAPA_INICIAL);
-  const { acoes, loading, erro, erroAcao, recarregar, criar, atualizar } =
-    useActions(etapaId);
+  const {
+    acoes,
+    loading,
+    erro,
+    erroAcao,
+    recarregar,
+    criar,
+    atualizar,
+    remover,
+  } = useActions(etapaId);
 
   return (
     <div className="mx-auto flex min-h-screen max-w-7xl flex-col gap-4 p-4 sm:p-6">
@@ -25,6 +33,7 @@ export default function Home() {
             erroAcao={erroAcao}
             onCriar={criar}
             onAtualizar={atualizar}
+            onRemover={remover}
             onTentarNovamente={recarregar}
           />
         </StagePanel>

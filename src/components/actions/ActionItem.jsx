@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "../ui/Button";
 
-export default function ActionItem({ acao, onAtualizar }) {
+export default function ActionItem({ acao, onAtualizar, onRemover }) {
   const [editando, setEditando] = useState(false);
   const [textoEdicao, setTextoEdicao] = useState(acao.texto);
   const [salvando, setSalvando] = useState(false);
@@ -36,6 +36,12 @@ export default function ActionItem({ acao, onAtualizar }) {
     setSalvando(false);
 
     if (deuCerto) setEditando(false);
+  }
+
+  async function apagar() {
+    setSalvando(true);
+    const deuCerto = await onRemover(acao.id);
+    if (!deuCerto) setSalvando(false);
   }
 
   return (
@@ -101,9 +107,19 @@ export default function ActionItem({ acao, onAtualizar }) {
             variante="contorno"
             tamanho="sm"
             onClick={iniciarEdicao}
+            disabled={salvando}
             aria-label={`Editar: ${acao.texto}`}
           >
             Editar
+          </Button>
+          <Button
+            variante="contorno"
+            tamanho="sm"
+            onClick={apagar}
+            disabled={salvando}
+            aria-label={`Apagar: ${acao.texto}`}
+          >
+            Apagar
           </Button>
         </>
       )}

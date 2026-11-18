@@ -5,6 +5,7 @@ export default function useActions(etapa) {
   const [acoes, setAcoes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState(null);
+  const [erroAcao, setErroAcao] = useState(null);
   const [tentativa, setTentativa] = useState(0);
 
   useEffect(() => {
@@ -12,11 +13,12 @@ export default function useActions(etapa) {
 
     setLoading(true);
     setErro(null);
+    setErroAcao(null);
 
     actionsService
       .getByStage(etapa)
       .then((dados) => {
-        if (!cancelado) setAcoes(dados);
+        if (!cancelado) setAcoes([...dados].reverse());
       })
       .catch((e) => {
         console.error(e);
@@ -37,5 +39,18 @@ export default function useActions(etapa) {
     setTentativa((valor) => valor + 1);
   }
 
-  return { acoes, loading, erro, recarregar };
+  async function criar(texto) {
+    setErroAcao(null);
+    try {
+      const nova = await actionsService.create({ etapa, texto });
+      setAcoes((atual) => [nova, ...atual]);
+      return true;
+    } catch (e) {
+      console.error(e);
+      setErroAcao("Não foi possível adicionar a ação. Tente novamente.");
+      return false;
+    }
+  }
+
+  return { acoes, loading, erro, erroAcao, recarregar, criar };
 }

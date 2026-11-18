@@ -1,8 +1,16 @@
 import ActionItem from "./ActionItem";
+import ActionForm from "./ActionForm";
 import Loading from "../ui/Loading";
 import ErrorMessage from "../ui/ErrorMessage";
 
-export default function ActionList({ acoes, loading, erro, onTentarNovamente }) {
+export default function ActionList({
+  acoes,
+  loading,
+  erro,
+  erroAcao,
+  onCriar,
+  onTentarNovamente,
+}) {
   const vazio = !loading && !erro && acoes.length === 0;
   const temLista = !loading && !erro && acoes.length > 0;
 
@@ -11,9 +19,17 @@ export default function ActionList({ acoes, loading, erro, onTentarNovamente }) 
       aria-labelledby="titulo-plano"
       className="flex flex-col rounded-2xl border border-black/10 bg-white p-4 text-slate-900"
     >
-      <h3 id="titulo-plano" className="mb-2 text-lg font-semibold">
+      <h3 id="titulo-plano" className="mb-3 text-lg font-semibold">
         Meu plano de ação
       </h3>
+
+      <ActionForm onCriar={onCriar} desabilitado={loading || Boolean(erro)} />
+
+      {erroAcao && (
+        <div className="mb-3">
+          <ErrorMessage mensagem={erroAcao} />
+        </div>
+      )}
 
       <div className="h-80 overflow-y-scroll border-t border-slate-100 pr-2 [scrollbar-color:var(--cor-destaque,#94a3b8)_#e2e8f0]">
         {loading && <Loading />}

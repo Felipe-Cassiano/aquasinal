@@ -52,5 +52,21 @@ export default function useActions(etapa) {
     }
   }
 
-  return { acoes, loading, erro, erroAcao, recarregar, criar };
+  async function atualizar(id, dados) {
+    setErroAcao(null);
+    try {
+      const atual = acoes.find((acao) => acao.id === id);
+      const atualizada = await actionsService.update(id, { ...atual, ...dados });
+      setAcoes((lista) =>
+        lista.map((acao) => (acao.id === id ? atualizada : acao)),
+      );
+      return true;
+    } catch (e) {
+      console.error(e);
+      setErroAcao("Não foi possível atualizar a ação. Tente novamente.");
+      return false;
+    }
+  }
+
+  return { acoes, loading, erro, erroAcao, recarregar, criar, atualizar };
 }

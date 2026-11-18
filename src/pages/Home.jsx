@@ -9,7 +9,7 @@ import { ETAPA_INICIAL } from "../constants/stages";
 
 export default function Home() {
   const [etapaId, setEtapaId] = useState(ETAPA_INICIAL);
-  const { acoes, loading, erro, erroAcao, recarregar, criar } =
+  const { acoes, loading, erro, erroAcao, recarregar, criar, atualizar } =
     useActions(etapaId);
 
   return (
@@ -24,6 +24,7 @@ export default function Home() {
             erro={erro}
             erroAcao={erroAcao}
             onCriar={criar}
+            onAtualizar={atualizar}
             onTentarNovamente={recarregar}
           />
         </StagePanel>

@@ -68,5 +68,27 @@ export default function useActions(etapa) {
     }
   }
 
-  return { acoes, loading, erro, erroAcao, recarregar, criar, atualizar };
+  async function remover(id) {
+    setErroAcao(null);
+    try {
+      await actionsService.remove(id);
+      setAcoes((lista) => lista.filter((acao) => acao.id !== id));
+      return true;
+    } catch (e) {
+      console.error(e);
+      setErroAcao("Não foi possível apagar a ação. Tente novamente.");
+      return false;
+    }
+  }
+
+  return {
+    acoes,
+    loading,
+    erro,
+    erroAcao,
+    recarregar,
+    criar,
+    atualizar,
+    remover,
+  };
 }

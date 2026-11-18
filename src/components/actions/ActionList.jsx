@@ -10,6 +10,7 @@ export default function ActionList({
   erroAcao,
   onCriar,
   onAtualizar,
+  onRemover,
   onTentarNovamente,
 }) {
   const vazio = !loading && !erro && acoes.length === 0;
@@ -49,6 +50,7 @@ export default function ActionList({
                 key={acao.id}
                 acao={acao}
                 onAtualizar={onAtualizar}
+                onRemover={onRemover}
               />
             ))}
           </ul>

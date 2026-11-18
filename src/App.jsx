@@ -1,3 +1,9 @@
+import Home from "./pages/Home";
+
 export default function App() {
-  return <h1 className="p-4 text-2xl font-semibold">AquaSinal</h1>;
+  return (
+    <div className="min-h-screen bg-slate-100 text-slate-900">
+      <Home />
+    </div>
+  );
 }

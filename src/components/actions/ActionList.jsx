@@ -9,6 +9,7 @@ export default function ActionList({
   erro,
   erroAcao,
   onCriar,
+  onAtualizar,
   onTentarNovamente,
 }) {
   const vazio = !loading && !erro && acoes.length === 0;
@@ -44,7 +45,11 @@ export default function ActionList({
         {temLista && (
           <ul>
             {acoes.map((acao) => (
-              <ActionItem key={acao.id} acao={acao} />
+              <ActionItem
+                key={acao.id}
+                acao={acao}
+                onAtualizar={onAtualizar}
+              />
             ))}
           </ul>
         )}

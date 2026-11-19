@@ -1,7 +1,12 @@
 import { useState } from "react";
 import Button from "../ui/Button";
 
-export default function ActionItem({ acao, onAtualizar, onRemover }) {
+export default function ActionItem({
+  acao,
+  bloqueado,
+  onAtualizar,
+  onRemover,
+}) {
   const [editando, setEditando] = useState(false);
   const [textoEdicao, setTextoEdicao] = useState(acao.texto);
   const [salvando, setSalvando] = useState(false);
@@ -52,8 +57,8 @@ export default function ActionItem({ acao, onAtualizar, onRemover }) {
         aria-checked={acao.feito}
         aria-label={acao.texto}
         onClick={alternarFeito}
-        disabled={salvando}
-        className={`flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center rounded border-2 text-xs text-white disabled:cursor-wait disabled:opacity-60 ${
+        disabled={salvando || bloqueado}
+        className={`flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center rounded border-2 text-xs text-white disabled:cursor-not-allowed disabled:opacity-60 ${
           acao.feito ? "border-green-600 bg-green-600" : "border-slate-400"
         }`}
       >
@@ -81,7 +86,7 @@ export default function ActionItem({ acao, onAtualizar, onRemover }) {
           <Button
             type="submit"
             tamanho="sm"
-            disabled={salvando || !textoEdicao.trim()}
+            disabled={salvando || bloqueado || !textoEdicao.trim()}
           >
             Salvar
           </Button>
@@ -107,7 +112,7 @@ export default function ActionItem({ acao, onAtualizar, onRemover }) {
             variante="contorno"
             tamanho="sm"
             onClick={iniciarEdicao}
-            disabled={salvando}
+            disabled={salvando || bloqueado}
             aria-label={`Editar: ${acao.texto}`}
           >
             Editar
@@ -116,7 +121,7 @@ export default function ActionItem({ acao, onAtualizar, onRemover }) {
             variante="contorno"
             tamanho="sm"
             onClick={apagar}
-            disabled={salvando}
+            disabled={salvando || bloqueado}
             aria-label={`Apagar: ${acao.texto}`}
           >
             Apagar

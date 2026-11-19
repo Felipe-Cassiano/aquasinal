@@ -4,8 +4,8 @@ Aplicação web que orienta o cidadão nas **três etapas de uma enchente urbana
 
 Projeto da **Global Solution 2026.2 (CitizenTech)** — FIAP.
 
-- **Acesse:** [PREENCHER: link do site]
-- **Repositório:** [PREENCHER: link do GitHub]
+- **Acesse:** (https://aquasinal.vercel.app/)
+- **Repositório:** (https://github.com/Felipe-Cassiano/aquasinal)
 - **Local (fictício):** São Paulo, SP
 
 > Todos os dados do mapa e das orientações são **ilustrativos**. O app não usa localização real nem substitui os canais oficiais (Defesa Civil: 199).
@@ -132,8 +132,8 @@ A API foi criada com **36 ações iniciais** (12 por etapa). O usuário pode cri
 ### 1. Clonar o repositório
 
 ```bash
-git clone [PREENCHER: link do repositório]
-cd [PREENCHER: nome da pasta]
+git clone https://github.com/Felipe-Cassiano/aquasinal
+cd aquasinal
 ```
 
 ### 2. Instalar as dependências
@@ -157,7 +157,7 @@ Copy-Item .env.example .env
 Abra o `.env` e preencha com a URL base da API, **sem** `/acoes` no final:
 
 ```
-VITE_API_URL=[PREENCHER: URL base da MockAPI]
+VITE_API_URL=https://6afb9b49892984c44949f206.mockapi.io
 ```
 
 > Sem essa variável, o app abre, mas mostra erro ao carregar as ações.

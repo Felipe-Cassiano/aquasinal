@@ -85,8 +85,6 @@ A conversa completa com o Claude é o registro principal do uso de IA. Abaixo es
 - "400 em todos os teste"
 - "ao dar f5 offline, a página apenas não carrega"
 
-> O histórico completo pode ser exportado a partir da conversa original: [PREENCHER: link ou anexo do histórico].
-
 ## 8. Limites e responsabilidade
 
 - A equipe revisou, testou e é responsável por todo o código entregue.

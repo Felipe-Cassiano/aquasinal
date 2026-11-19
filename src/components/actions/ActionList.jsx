@@ -8,6 +8,8 @@ export default function ActionList({
   loading,
   erro,
   erroAcao,
+  usandoCopia,
+  somenteLeitura,
   onCriar,
   onAtualizar,
   onRemover,
@@ -25,7 +27,19 @@ export default function ActionList({
         Meu plano de ação
       </h3>
 
-      <ActionForm onCriar={onCriar} desabilitado={loading || Boolean(erro)} />
+      <ActionForm
+        onCriar={onCriar}
+        desabilitado={loading || Boolean(erro) || somenteLeitura}
+      />
+
+      {usandoCopia && (
+        <div className="mb-3">
+          <ErrorMessage
+            tipo="aviso"
+            mensagem="Mostrando a última lista salva neste navegador. Alterações ficam bloqueadas até a conexão voltar."
+          />
+        </div>
+      )}
 
       {erroAcao && (
         <div className="mb-3">
@@ -49,6 +63,7 @@ export default function ActionList({
               <ActionItem
                 key={acao.id}
                 acao={acao}
+                bloqueado={somenteLeitura}
                 onAtualizar={onAtualizar}
                 onRemover={onRemover}
               />

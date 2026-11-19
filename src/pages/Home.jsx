@@ -6,17 +6,18 @@ import StagePanel from "../components/stage/StagePanel";
 import ActionList from "../components/actions/ActionList";
 import ErrorMessage from "../components/ui/ErrorMessage";
 import useActions from "../hooks/useActions";
-import useOnlineStatus from "../hooks/useOnlineStatus";
 import { ETAPA_INICIAL } from "../constants/stages";
 
 export default function Home() {
   const [etapaId, setEtapaId] = useState(ETAPA_INICIAL);
-  const online = useOnlineStatus();
   const {
     acoes,
     loading,
     erro,
     erroAcao,
+    online,
+    usandoCopia,
+    somenteLeitura,
     recarregar,
     criar,
     atualizar,
@@ -29,7 +30,7 @@ export default function Home() {
       {!online && (
         <ErrorMessage
           tipo="aviso"
-          mensagem="Você está sem conexão. Algumas ações podem não funcionar até a internet voltar."
+          mensagem="Você está sem conexão. Criar, editar e apagar ficam bloqueados até a internet voltar."
         />
       )}
       <StageStepper etapaAtual={etapaId} onChange={setEtapaId} />
@@ -40,6 +41,8 @@ export default function Home() {
             loading={loading}
             erro={erro}
             erroAcao={erroAcao}
+            usandoCopia={usandoCopia}
+            somenteLeitura={somenteLeitura}
             onCriar={criar}
             onAtualizar={atualizar}
             onRemover={remover}

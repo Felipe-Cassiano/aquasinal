@@ -2,6 +2,8 @@ import ActionItem from "./ActionItem";
 import ActionForm from "./ActionForm";
 import Loading from "../ui/Loading";
 import ErrorMessage from "../ui/ErrorMessage";
+import ProgressBar from "../ui/ProgressBar";
+import { calcularProgresso } from "../../utils/progress";
 
 export default function ActionList({
   acoes,
@@ -17,6 +19,7 @@ export default function ActionList({
 }) {
   const vazio = !loading && !erro && acoes.length === 0;
   const temLista = !loading && !erro && acoes.length > 0;
+  const progresso = calcularProgresso(acoes);
 
   return (
     <section
@@ -26,6 +29,14 @@ export default function ActionList({
       <h3 id="titulo-plano" className="mb-3 text-lg font-semibold">
         Meu plano de ação
       </h3>
+
+      {temLista && (
+        <ProgressBar
+          feitas={progresso.feitas}
+          total={progresso.total}
+          porcentagem={progresso.porcentagem}
+        />
+      )}
 
       <ActionForm
         onCriar={onCriar}

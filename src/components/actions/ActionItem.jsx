@@ -50,7 +50,7 @@ export default function ActionItem({
   }
 
   return (
-    <li className="flex items-center gap-3 border-b border-slate-100 py-2.5 text-[15px]">
+    <li className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-slate-100 py-2.5 text-[15px]">
       <button
         type="button"
         role="checkbox"
@@ -68,7 +68,7 @@ export default function ActionItem({
       {editando ? (
         <form
           onSubmit={salvarEdicao}
-          className="flex min-w-0 flex-1 items-center gap-2"
+          className="flex min-w-0 flex-1 basis-48 flex-wrap items-center gap-2"
         >
           <input
             type="text"
@@ -81,51 +81,55 @@ export default function ActionItem({
             autoFocus
             aria-label="Editar ação"
             disabled={salvando}
-            className="min-w-0 flex-1 rounded-lg border border-slate-300 px-2 py-1 text-sm text-slate-900 focus-visible:outline-2 focus-visible:outline-slate-500 disabled:bg-slate-100"
+            className="min-w-0 flex-1 basis-32 rounded-lg border border-slate-300 px-2 py-1 text-sm text-slate-900 focus-visible:outline-2 focus-visible:outline-slate-500 disabled:bg-slate-100"
           />
-          <Button
-            type="submit"
-            tamanho="sm"
-            disabled={salvando || bloqueado || !textoEdicao.trim()}
-          >
-            Salvar
-          </Button>
-          <Button
-            variante="contorno"
-            tamanho="sm"
-            onClick={cancelarEdicao}
-            disabled={salvando}
-          >
-            Cancelar
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              type="submit"
+              tamanho="sm"
+              disabled={salvando || bloqueado || !textoEdicao.trim()}
+            >
+              Salvar
+            </Button>
+            <Button
+              variante="contorno"
+              tamanho="sm"
+              onClick={cancelarEdicao}
+              disabled={salvando}
+            >
+              Cancelar
+            </Button>
+          </div>
         </form>
       ) : (
         <>
           <span
-            className={`min-w-0 flex-1 break-words ${
+            className={`min-w-0 flex-1 basis-40 break-words ${
               acao.feito ? "text-slate-400 line-through" : "text-slate-900"
             }`}
           >
             {acao.texto}
           </span>
-          <Button
-            variante="contorno"
-            tamanho="sm"
-            onClick={iniciarEdicao}
-            disabled={salvando || bloqueado}
-            aria-label={`Editar: ${acao.texto}`}
-          >
-            Editar
-          </Button>
-          <Button
-            variante="contorno"
-            tamanho="sm"
-            onClick={apagar}
-            disabled={salvando || bloqueado}
-            aria-label={`Apagar: ${acao.texto}`}
-          >
-            Apagar
-          </Button>
+          <div className="flex shrink-0 gap-2 max-sm:w-full max-sm:pl-8">
+            <Button
+              variante="contorno"
+              tamanho="sm"
+              onClick={iniciarEdicao}
+              disabled={salvando || bloqueado}
+              aria-label={`Editar: ${acao.texto}`}
+            >
+              Editar
+            </Button>
+            <Button
+              variante="contorno"
+              tamanho="sm"
+              onClick={apagar}
+              disabled={salvando || bloqueado}
+              aria-label={`Apagar: ${acao.texto}`}
+            >
+              Apagar
+            </Button>
+          </div>
         </>
       )}
     </li>

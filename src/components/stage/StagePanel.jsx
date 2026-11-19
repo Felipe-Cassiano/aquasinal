@@ -9,7 +9,7 @@ export default function StagePanel({ etapaId, children, direita }) {
   return (
     <section
       aria-labelledby="titulo-etapa"
-      className="rounded-3xl border-2 p-5 sm:p-8"
+      className="rounded-3xl border-2 p-4 sm:p-6 lg:p-8"
       style={{
         backgroundColor: etapa.cores.fundo,
         borderColor: etapa.cores.borda,
@@ -18,12 +18,12 @@ export default function StagePanel({ etapaId, children, direita }) {
         "--cor-texto-destaque": etapa.cores.textoDestaque,
       }}
     >
-      <div className={`grid gap-6 ${direita ? "lg:grid-cols-[5fr_4fr]" : ""}`}>
+      <div className={`grid gap-4 lg:gap-6 ${direita ? "lg:grid-cols-[5fr_4fr]" : ""}`}>
         <div className="flex min-w-0 flex-col gap-4">
           <header>
             <h2
               id="titulo-etapa"
-              className="text-6xl font-bold leading-none tracking-tight sm:text-[84px]"
+              className="break-words text-5xl font-bold leading-none tracking-tight sm:text-7xl lg:text-[84px]"
             >
               {etapa.rotulo}
             </h2>

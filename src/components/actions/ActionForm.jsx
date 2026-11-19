@@ -31,6 +31,7 @@ export default function ActionForm({ onCriar, desabilitado }) {
       />
       <Button
         type="submit"
+        className="shrink-0"
         disabled={desabilitado || enviando || !texto.trim()}
       >
         {enviando ? "Adicionando..." : "+ Adicionar"}

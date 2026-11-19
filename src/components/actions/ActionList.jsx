@@ -58,7 +58,7 @@ export default function ActionList({
         </div>
       )}
 
-      <div className="h-80 overflow-y-scroll border-t border-slate-100 pr-2 [scrollbar-color:var(--cor-destaque,#94a3b8)_#e2e8f0]">
+      <div className="h-72 overflow-y-scroll border-t border-slate-100 pr-2 [scrollbar-color:var(--cor-destaque,#94a3b8)_#e2e8f0] sm:h-80">
         {loading && <Loading />}
         {erro && (
           <ErrorMessage mensagem={erro} onTentarNovamente={onTentarNovamente} />

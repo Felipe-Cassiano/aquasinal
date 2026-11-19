@@ -6,7 +6,7 @@ const estilos = {
 
 const tamanhos = {
   md: "px-4 py-2.5 text-sm font-semibold",
-  sm: "px-2 py-1 text-xs",
+  sm: "px-3 py-1.5 text-xs sm:px-2 sm:py-1",
 };
 
 export default function Button({

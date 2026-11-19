@@ -3,6 +3,7 @@ import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import StageStepper from "../components/stage/StageStepper";
 import StagePanel from "../components/stage/StagePanel";
+import RouteMap from "../components/stage/RouteMap";
 import ActionList from "../components/actions/ActionList";
 import ErrorMessage from "../components/ui/ErrorMessage";
 import useActions from "../hooks/useActions";
@@ -35,7 +36,7 @@ export default function Home() {
       )}
       <StageStepper etapaAtual={etapaId} onChange={setEtapaId} />
       <main className="flex-1">
-        <StagePanel etapaId={etapaId}>
+        <StagePanel etapaId={etapaId} direita={<RouteMap etapaId={etapaId} />}>
           <ActionList
             acoes={acoes}
             loading={loading}
